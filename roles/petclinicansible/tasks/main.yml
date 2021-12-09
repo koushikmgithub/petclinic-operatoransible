@@ -1,0 +1,45 @@
+---
+# tasks file for petclinicansible
+- name: Create petclinic deployment
+  kubernetes.core.k8s:
+    definition:
+      kind: Deployment
+      apiVersion: apps/v1
+      metadata:
+        name: '{{ ansible_operator_meta.name }}-petclinicansible'
+        namespace: '{{ ansible_operator_meta.namespace }}'
+      spec:
+        replicas: "{{size}}"
+        selector:
+          matchLabels:
+            app: petclinicansible
+        template:
+          metadata:
+            labels:
+              app: petclinicansible
+          spec:
+            containers:
+            - name: petclinicansible
+              image: "dockertestbaby/spring-petclinic:1.0"
+              ports:
+                - containerPort: 8090
+
+- name: Create petclinic service
+  kubernetes.core.k8s:
+    definition:
+      kind: Service
+      apiVersion: v1
+      metadata:
+        name: '{{ ansible_operator_meta.name }}-petclinicansible'
+        namespace: '{{ ansible_operator_meta.namespace }}'
+        labels:
+          app: petclinicansible
+      spec:
+        type: ClusterIP
+        ports:
+          - port: 8090
+            targetPort: 8090
+            protocol: TCP
+            name: http-petclinicansible
+        selector:
+          app: petclinicansible

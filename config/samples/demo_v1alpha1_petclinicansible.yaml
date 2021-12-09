@@ -1,0 +1,7 @@
+apiVersion: demo.ansible.op.com/v1alpha1
+kind: PetClinicAnsible
+metadata:
+  name: petclinicansible-sample
+spec:
+  # Add fields here
+  size: 1

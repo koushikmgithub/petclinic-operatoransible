@@ -1,0 +1,7 @@
+---
+# Use the 'create api' subcommand to add watches to this file.
+- version: v1alpha1
+  group: demo.ansible.op.com
+  kind: PetClinicAnsible
+  role: petclinicansible
+#+kubebuilder:scaffold:watch

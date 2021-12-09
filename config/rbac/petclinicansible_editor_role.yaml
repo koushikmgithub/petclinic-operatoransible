@@ -1,0 +1,24 @@
+# permissions for end users to edit petclinicansibles.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: petclinicansible-editor-role
+rules:
+- apiGroups:
+  - demo.ansible.op.com
+  resources:
+  - petclinicansibles
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - demo.ansible.op.com
+  resources:
+  - petclinicansibles/status
+  verbs:
+  - get
