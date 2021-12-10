@@ -20,7 +20,7 @@
           spec:
             containers:
             - name: petclinicansible
-              image: "dockertestbaby/spring-petclinic:1.0"
+              image: "{{image.repository}}:{{image.tag}}"
               ports:
                 - containerPort: 8090
 

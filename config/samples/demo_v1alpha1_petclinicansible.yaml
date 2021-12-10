@@ -5,3 +5,7 @@ metadata:
 spec:
   # Add fields here
   size: 1
+  image:
+    pullPolicy: IfNotPresent
+    repository: dockertestbaby/spring-petclinic
+    tag: "1.0"
